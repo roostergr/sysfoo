@@ -7,4 +7,3 @@ FROM tomcat
 WORKDIR /usr/local/tomcat
 COPY --from=build /opt/demo/target/sysfoo.war webapps/
 CMD catalina.sh run 
-
