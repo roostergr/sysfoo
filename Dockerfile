@@ -1,9 +1,9 @@
-FROM maven as build
+FROM maven:3.6.3 as build
 WORKDIR /opt/demo
 COPY . /opt/demo
-RUN mvn package 
+RUN mvn package
 
-FROM tomcat
+FROM tomcat as run
 WORKDIR /usr/local/tomcat
-COPY --from=build /opt/demo/target/sysfoo.war webapps/
-CMD catalina.sh run 
+COPY --from=0 /opt/demo/target/sysfoo.war webapps/
+CMD catalina.sh run
